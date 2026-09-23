@@ -1,8 +1,14 @@
 import java.util.*;
 public class Function {
     public static void main(String[] args) {
-        int ans=sum2();
+        int ans=sum3(54,33);
         System.out.println(ans);
+    }
+    
+    // value passed via parameters so we dont need to enter value again and again
+    static int sum3(int a,int b){
+        int sum=a+b;
+        return sum;
     }
 
     static int sum2(){
