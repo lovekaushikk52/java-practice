@@ -8,5 +8,6 @@ public class Function3 {
 
     static void change(int nums[]){
         nums[0]=99;
+        nums[1]=22;
     } 
 }
