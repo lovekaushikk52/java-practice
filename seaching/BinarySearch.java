@@ -3,7 +3,7 @@ package seaching;
 public class BinarySearch {
     public static void main(String[] args) {
         int [] nums={-32,0,2,3,56,78,99};
-        int target=78;
+        int target=178;
         System.out.println(binarySearch(nums, target));
     }
     
