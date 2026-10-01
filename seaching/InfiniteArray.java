@@ -26,6 +26,7 @@ public class InfiniteArray {
             start=newStart;
         }
 
+        //return binary search
         return binarySearch(arr, target, start, end);
 
     }
