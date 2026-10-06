@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Searching2D {
     public static void main(String[] args) {
         int [][] arr={
-            //row-wise,col-wise sorted matrix
+            //row-wise,col-wise sorted Matrix
 
             {10,20,30,40},
             {15,25,35,45},
