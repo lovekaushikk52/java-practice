@@ -81,6 +81,7 @@ public class LL {
         int val=tail.val;
         tail=secondLast;
         tail.next=null;
+        size--;
 
         return val;
     }
@@ -99,6 +100,7 @@ public class LL {
         int val=prev.next.val;
 
         prev.next=prev.next.next;
+        size--;
 
         return val;
     }
@@ -151,5 +153,141 @@ public class LL {
         }
     }
 
+    //questions
+
+    public void duplicates(){
+        Node node=head;
+        
+        while (node.next!=null){
+
+            if(node.val==node.next.val){
+                node.next=node.next.next;
+                size--;
+            }
+            else{
+                node=node.next;
+            }
+        }
+        tail=node;
+        tail.next=null;
+    }
+
+    //merge
+    public static LL merge(LL first,LL second){
+        Node f=first.head;
+        Node s=second.head;
+
+        LL ans=new LL();
+
+        while(f!=null && s!=null ){
+
+            if(s.val<f.val){
+                ans.insertLast(s.val);
+                s=s.next;
+            }
+            else{
+                ans.insertLast(f.val);
+                f=f.next;
+            }
+        }
+
+        while(s!=null){
+            ans.insertLast(s.val);
+            s=s.next;
+        }
+        while(f!=null){
+            ans.insertLast(f.val);
+            f=f.next;
+        }
+        return ans;
+    }
+
+    //fast pointer will move two place ahead whereas slow pointer will move one step ahead
+    public boolean hasCycle(Node head){
+        Node fast=head;
+        Node slow=head;
+
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+
+            if(fast==slow){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int lenCycle(Node head){
+        Node fast=head;
+        Node slow=head;
+
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+
+            if(fast==slow){
+                // calculate the length of slow
+
+                Node temp=slow;
+                int length=0;
+
+                do{
+                    temp=temp.next;
+                    length++;
+                }while(temp!=slow);
+                return length;
+            }
+        }
+        return 0;
+    }
+
+    // is happy
+
+    public boolean isHappy(int n){
+
+        int slow=n;
+        int fast=n;
+
+        do{
+            slow=findSquare(slow);
+            fast=findSquare(findSquare(fast));
+        }
+        while(slow!=fast);
+
+        if(slow==1){
+            return true;
+        }
+        return false;
+    }
+
+    private int findSquare(int n){
+
+        int ans=0;
+        while(n>0){
+            int rem=n%10;
+            ans=ans+rem*rem;
+            n=n/10;
+        }
+        return ans;
+    }
+
+
+    public static void main(String[] args) {
+        LL first=new LL();
+        LL second =new LL();
+
+        first.insertLast(1);
+        first.insertLast(3);
+        first.insertLast(5);
+
+        second.insertLast(1);
+        second.insertLast(2);
+        second.insertLast(4);
+        second.insertLast(9);
+
+        LL ans=LL.merge(first,second);
+        ans.display();
+    }
     
 }
